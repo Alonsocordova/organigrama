@@ -1,4 +1,4 @@
-import departamentos from './arreglodptos.js'
+import departamentos from './arreglodptos.js';
 function init() {
   const $ = go.GraphObject.make; // abreviación para simplificar el código
 
