@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página vacía</title>
+	<script src="https://unpkg.com/gojs@2.1.44/release/go.js"></script>
+	<script src = "arreglodptos.js" ></script>
+</head>
+<style>
+
+  #diagramContainer{
+    width: 100%; 
+	height: 1900px; 
+	overflow-x: scroll; 
+	overflow-y: hidden; 
+	white-space: nowrap;
+  
+  
+  }
+  /* Estilo del contenedor del diagrama */
+  #myDiagramDiv {
+    width: 100%;
+    height: 600px;
+    border: 1px solid black;
+  }
+
+  /* Estilo del popup */
+  #myPopup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px; /* Ancho fijo */
+    max-width: 90%; /* Para pantallas pequeñas */
+    background-color: white;
+    border: 2px solid black;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    overflow-y: auto; /* Para que tenga scroll si el texto es muy largo */
+    z-index: 1001; /* Mayor que el overlay */
+  }
+
+  #overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000; /* Debe estar debajo del popup */
+  }
+
+  /* Estilos del contenido */
+  #popupContent {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: auto; /* Ajusta la altura según el contenido */
+  }
+
+  /* Botón de cerrar */
+  #closePopup {
+    cursor: pointer;
+    color: red;
+    float: right;
+  }
+</style>
+<body>
+	
+	<!-- Sección fija para el organigrama -->
+	<div id="diagramContainer">
+	  <div id="myDiagramDiv" style="display: inline-block; width: 100%; height: 1900px;"></div>
+	</div>
+
+<!-- Popup Modal (inicialmente oculto) -->
+	<div id="myPopup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 700px; max-width: 90%; background-color: white; border: 2px solid black; padding: 20px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); overflow-y: auto; /* Para que tenga scroll si el texto es muy largo */">
+	  <span id="closePopup" style="cursor: pointer; color: red; float: right;">&times;</span>
+	  <div id="popupContent" style="margin: 0; padding: 0; overflow: hidden; height: auto;"></div>
+	</div>
+
+<!-- Overlay que cubre toda la pantalla -->
+	<div id="overlay" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 999;"></div>
+	
+	<script src = "script1.js" ></script>
+	
+
+	
+
+
+</body>
+</html>

@@ -1,0 +1,179 @@
+function init() {
+  const $ = go.GraphObject.make; // abreviación para simplificar el código
+
+  // Crear el diagrama con un TreeLayout para la organización automática
+  const myDiagram = $(go.Diagram, "myDiagramDiv", {
+    layout: $(go.TreeLayout, { angle: 90, layerSpacing: 35 }), // TreeLayout organiza los nodos jerárquicamente
+    "undoManager.isEnabled": true,  // habilita la función de deshacer/rehacer
+    isReadOnly: true,               // hace el diagrama de solo lectura (no se puede modificar)
+    contentAlignment: go.Spot.Center // Alinea el contenido en el centro
+	allowZoom: false,                // Desactiva el zoom independiente del diagrama
+    autoScale: go.Diagram.Unscaled   // Evita que el diagrama escale automáticamente
+  });
+
+   // Definir cómo serán los nodos del organigrama
+  myDiagram.nodeTemplate = $(
+    go.Node, "Auto",
+    { click: showNodePopup }, // Evento para mostrar el popup al hacer clic en un nodo
+
+    // Cambiar la forma dependiendo del key del nodo
+    $(go.Shape, 
+      new go.Binding("figure", "", function(data) {
+        return data.key === 1 ? "Diamond" : "RoundedRectangle"; // Cambiar la forma solo para el nodo con key 1
+      }),
+      new go.Binding("fill", "", function(data) {
+        return data.key === 1 ? "lightcoral" : "lightblue"; // Cambiar el color solo para el nodo con key 1
+      }),
+      { stroke: "black" }
+    ),
+    
+    // Definir el TextBlock con un tamaño de texto uniforme para todos los nodos
+    $(go.TextBlock, {
+        margin: 10,
+        wrap: go.TextBlock.WrapDesiredSize, // Ajuste de texto (Text Wrapping)
+        width: 120,                         // Ancho fijo para el nodo
+		textAlign: "center",                // Centrar el texto horizontalmente
+        verticalAlignment: go.Spot.Center,  // Centrar el texto verticalmente
+        editable: false,                    // El texto no es editable
+        font: "bold 12pt sans-serif",       // Tamaño y estilo del texto
+        stroke: "black"
+      },
+      new go.Binding("text", "name")) // Binding para mostrar el nombre del nodo
+	);
+
+  // Definir los enlaces entre los nodos
+  myDiagram.linkTemplate = $(
+    go.Link,
+	{ routing: go.Link.Orthogonal},
+    $(go.Shape)
+  );
+
+		// Crear el modelo de datos
+		myDiagram.model = new go.TreeModel([
+		  
+		  { key: 1, name: "Alcaldia" },
+		  { key: 1.1, parent: 1, name: "Dpto. de Comunicaciones y Relaciones Publicas" },
+		  { key: 1.11, parent: 1.1, name: "Unidad de Gestion e Imagen Corporativa" },
+		  { key: 1.12, parent: 1.11, name: "Unidad de Prensa" },
+		  { key: 1.13, parent: 1.12, name: "Unidad de Eventos" },
+		  { key: 1.14, parent: 1.13, name: "Unidad de Informaciones" },
+		  { key: 2, parent: 1, name: "Administracion Municipal" },
+		  { key: 2.1, parent: 2, name: "Dpto. de Informatica" },
+		  { key: 3, parent: 2, name: "Secretaria Municipal" },
+		  { key: 3.1, parent: 3, name: "Dpto. de Decretos y Resoluciones" },
+		  { key: 3.2, parent: 3.1, name: "Seccion Secretaria de Concejo" },
+		  { key: 3.3, parent: 3.2, name: "Oficina de Partes, Reclamos y Archivo" },
+		  { key: 3.4, parent: 3.3, name: "Seccion de Registro Publico de Organizaciones Sociales" },
+		  { key: 4, parent: 2, name: "Secretaria Comunal de Planificacion" },
+		  { key: 4.1, parent: 4, name: "Dpto. de Asesoria Urbana y Estudios" },
+		  { key: 4.2, parent: 4.1, name: "Dpto. de Planificacion Presupuestaria y Licitaciones" },
+		  { key: 4.3, parent: 4.2, name: "Dpto. de Proyectos" },
+		  { key: 5, parent: 2, name: "Direccion de Asesoria Juridica" },
+		  { key: 5.1, parent: 5, name: "Transparencia" },
+		  { key: 6, parent: 2, name: "Direccion de Control" },
+		  { key: 6.1, parent: 6, name: "Dpto. de Auditoria" },
+		  { key: 7, parent: 2, name: "Direccion de Administracion y Finanzas" },
+		  { key: 7.1, parent: 7, name: "Dpto. de Presupuesto y Contabilidad" },
+		  { key: 7.11, parent: 7.1, name: "Seccion Tesoreria" },
+		  { key: 7.12, parent: 7.11, name: "Seccion Cobranza" },
+		  { key: 7.13, parent: 7.12, name: "Seccion Inventarios" },
+		  { key: 7.2, parent: 7, name: "Dpto. de Aprovisionamiento" },
+		  { key: 7.3, parent: 7, name: "Dpto. de Personal" },
+		  { key: 7.31, parent: 7.3, name: "Seccion Recursos Humanos" },
+		  { key: 7.32, parent: 7.31, name: "Seccion Remuneraciones" },
+		  { key: 7.4, parent: 7, name: "Dpto. de Bienestar" },
+		  { key: 7.5, parent: 7, name: "Subdireccion de Rentas Municipales" },
+		  { key: 7.51, parent: 7.5, name: "Dpto. de Patentes Municipales" },
+		  { key: 7.52, parent: 7.51, name: "Dpto. de Fiscalizacion" },
+		  { key: 7.53, parent: 7.52, name: "Seccion de Cobranzas Administrativas" },
+		  { key: 7.54, parent: 7.53, name: "Convenio SII" },
+		  { key: 8, parent: 2, name: "Direccion de Obras" },
+		  { key: 8.1, parent: 8, name: "Dpto. de Edificacion y Archivo" },
+		  { key: 8.2, parent: 8.1, name: "Dpto. de Construccion e Inspeccion Tecnica" },
+		  { key: 8.3, parent: 8.2, name: "Dpto. de Urbanismo" },
+		  { key: 8.4, parent: 8.3, name: "Dpto. de Ingenieria Electrica, Alumbrado Publico y Proyectos" },
+		  { key: 9, parent: 2, name: "Direccion de Transito y Transporte Publico" },
+		  { key: 9.1, parent: 9, name: "Dpto. de Licencias de Conducir" },
+		  { key: 9.2, parent: 9.1, name: "Dpto. de Ingenieria y Estudios" },
+		  { key: 9.3, parent: 9.2, name: "Dpto. de Permisos de Circulacion" },
+		  { key: 10, parent: 2, name: "Direccion de Desarrollo Comunitario" },
+		  { key: 10.1, parent: 10, name: "Subdireccion de Gestion y Familia" },
+		  { key: 10.11, parent: 10.1, name: "Dpto. de Programas Externos" },
+		  { key: 10.12, parent: 10.11, name: "Dpto. de Juventud y Niñez" },
+		  { key: 10.13, parent: 10.12, name: "Dpto. de la Mujer" },
+		  { key: 10.2, parent: 10, name: "Subdireccion Social" },
+		  { key: 10.21, parent: 10.2, name: "Dpto. Tecnico Social" },
+		  { key: 10.211, parent: 10.21, name: "Seccion Tecnico Social" },
+		  { key: 10.212, parent: 10.211, name: "Seccion de Estratificacion Social" },
+		  { key: 10.213, parent: 10.212, name: "Seccion de Migracion" },
+		  { key: 10.214, parent: 10.213, name: "Oficina de Inclusion de Personas con Discapacidad" },
+		  { key: 10.215, parent: 10.214, name: "Oficina de Prestaciones Monetarias" },
+		  { key: 10.216, parent: 10.215, name: "Oficina de Orientacion y Derivacion Legal" },
+		  { key: 10.3, parent: 10, name: "Subdireccion de Gestion Comunitaria" },
+		  { key: 10.31, parent: 10.3, name: "Unidad de Apoyo de Organizaciones" },
+		  { key: 10.4, parent: 10, name: "Subdireccion de Personas Mayores" },
+		  { key: 10.42, parent: 10.4, name: "Oficina de Personas Mayores" },
+		  { key: 10.5, parent: 10, name: "Subdireccion de Cultura" },
+		  { key: 10.51, parent: 10.5, name: "Seccion Gestion Cultural" },
+		  { key: 10.511, parent: 10.51, name: "Patrimonio" },
+		  { key: 10.512, parent: 10.511, name: "Formacion" },
+		  { key: 10.513, parent: 10.512, name: "Programacion" },
+		  { key: 10.514, parent: 10.512, name: "Pueblos Originarios" },
+		  { key: 10.52, parent: 10.5, name: "Participacion y Proyectos" },
+		  { key: 10.53, parent: 10.5, name: "Biblioteca" },
+		  { key: 10.6, parent: 10, name: "Subdireccion de Desarrollo Local" },
+		  { key: 10.61, parent: 10.6, name: "Seccion de OMIL" },
+		  { key: 10.62, parent: 10.61, name: "Seccion de Turismo" },
+		  { key: 10.63, parent: 10.62, name: "Seccion de OTEC" },
+		  { key: 10.64, parent: 10.63, name: "Seccion de Fomento Productivo" },
+		  { key: 10.7, parent: 10, name: "Subdireccion de Gestion del Riesgo de Desastre" },
+		  { key: 10.71, parent: 10.7, name: "Dpto. de Emergencia Social" },
+		  { key: 11, parent: 2, name: "Direccion de Medio Ambiente, Aseo y Areas Verdes" },
+		  { key: 11.1, parent: 11, name: "Dpto. de Areas Verdes" },
+		  { key: 11.2, parent: 11, name: "Dpto. de Medio Ambiente" },
+		  { key: 11.3, parent: 11, name: "Dpto. Servicios Municipales" },
+		  { key: 11.31, parent: 11.3, name: "Seccion de Aseo Comunal" },
+		  { key: 11.32, parent: 11.31, name: "Seccion Mantencion de Dependencias Municipales" },
+		  { key: 11.33, parent: 11.32, name: "Seccion Mantencion de Vehiculos" },
+		  { key: 12, parent: 2, name: "Direccion de Operaciones y Servicio a la Comunidad" },
+		  { key: 12.1, parent: 12, name: "Dpto. de Servicios Generales" },
+		  { key: 12.2, parent: 12.1, name: "Servicio de Guardia Interna" },
+		  { key: 13, parent: 2, name: "Direccion de Servicios Traspasados" },
+		  { key: 13.1, parent: 13, name: "Dpto. de Educacion Municipal" },
+		  { key: 14, parent: 2, name: "Direccion de Seguridad Publica" },
+		  { key: 14.1, parent: 14, name: "Dpto. de Servicios Generales" },
+		  { key: 14.2, parent: 14.1, name: "Servicio de Guardia Interna" },
+		  { key: 1.2, parent: 1, name: "Gabinete" }
+
+		]);
+	  }
+// Función para mostrar el popup al hacer clic en un nodo
+function showNodePopup(e, node) {
+  const popup = document.getElementById("myPopup");
+  const overlay = document.getElementById("overlay");
+  const popupContent = document.getElementById("popupContent");
+  
+  // Actualizar el contenido del modal con la información del nodo
+  popupContent.innerHTML = `<h3>${node.data.name}</h3><p>Información adicional del nodo</p>`;
+  
+  // Mostrar el popup y el overlay
+  popup.style.display = "block";
+  overlay.style.display = "block";
+}
+
+// Función para cerrar el popup
+function closePopup() {
+  const popup = document.getElementById("myPopup");
+  const overlay = document.getElementById("overlay");
+
+  popup.style.display = "none";
+  overlay.style.display = "none";
+}
+
+// Añadir eventos para cerrar el popup
+document.getElementById("closePopup").addEventListener("click", closePopup);
+document.getElementById("overlay").addEventListener("click", closePopup);
+	
+
+// Inicializar el diagrama
+window.addEventListener('DOMContentLoaded', init);
