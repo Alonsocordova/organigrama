@@ -52,130 +52,76 @@ function init() {
 	// Crear el modelo de datos
 	myDiagram.model = new go.TreeModel([
 
-		  // Nivel 1 (Raíz)
-		  { key: 1, name: "Alcaldía", level: 1},
+		   { key: 1, name: "Alcaldía", level: 1, img: "img/alcaldia", descripcion: "" },
+
+		  { key: 1.1, parent: 1, name: "COSOC", level: 2, img: "img/cosoc", descripcion: "" },
+		  { key: 1.2, parent: 1, name: "Juzgado de Policía Local", level: 2, img: "img/juzgadodepolicialocal", descripcion: "" },
+		  { key: 1.3, parent: 1, name: "Informática", level: 2, img: "img/informatica", descripcion: "" },
+		  { key: 1.4, parent: 1, name: "Administración Municipal", level: 2, img: "img/administracionmunicipal", descripcion: "" },
 		  
-		  // Nivel 2
-		  { key: 1.1, parent: 1, name: "Dpto. de Comunicaciones y Relaciones Publicas", level: 2 },
-		  { key: 2, parent: 1, name: "Administracion Municipal", level: 2 },
-		  { key: 1.2, parent: 1, name: "Gabinete", level: 2 },
-		  
-		  // Nivel 3 (Subdependencias de Dpto. de Comunicaciones y Relaciones Públicas)
-		  { key: 1.11, parent: 1.1, name: "Unidad de Gestion e Imagen Corporativa", level: 4 },
-		  { key: 1.12, parent: 1.11, name: "Unidad de Prensa", level: 5 },
-		  { key: 1.13, parent: 1.12, name: "Unidad de Eventos", level: 5 },
-		  { key: 1.14, parent: 1.13, name: "Unidad de Informaciones", level: 6 },
+		  { key: 1.5, parent: 1, name: "Consejo Municipal", level: 2, img: "img/consejomunicipal", descripcion: "" },
+		  { key: 1.6, parent: 1, name: "Gabinete", level: 2, img: "img/gabinete", descripcion: "" },
+		  { key: 1.7, parent: 1, name: "RRPP", level: 2, img: "img/rrpp", descripcion: "" },
+		  { key: 1.8, parent: 1, name: "Comité Técnico Administrativo", level: 2, img: "img/comitetecnicoadministrativo", descripcion: "" },
 
-		  // Nivel 3 (Subdependencias de Administración Municipal)
-		  { key: 2.1, parent: 2, name: "Dpto. de Informatica", level: 3 },
-		  { key: 3, parent: 2, name: "Secretaria Municipal", level: 3 },
-		  { key: 4, parent: 2, name: "Secretaria Comunal de Planificacion", level: 3 },
-		  { key: 5, parent: 2, name: "Direccion de Asesoria Juridica", level: 3 },
-		  { key: 6, parent: 2, name: "Direccion de Control", level: 3 },
-		  { key: 7, parent: 2, name: "Direccion de Administracion y Finanzas", level: 3 },
-		  { key: 8, parent: 2, name: "Direccion de Obras", level: 3 },
-		  { key: 9, parent: 2, name: "Direccion de Transito y Transporte Publico", level: 3 },
-		  { key: 10, parent: 2, name: "Direccion de Desarrollo Comunitario", level: 3, loc: "0 1000" },
-		  { key: 11, parent: 2, name: "Direccion de Medio Ambiente, Aseo y Areas Verdes", level: 3 },
-		  { key: 12, parent: 2, name: "Direccion de Operaciones y Servicio a la Comunidad", level: 3 },
-		  { key: 13, parent: 2, name: "Direccion de Servicios Traspasados", level: 3 },
-		  { key: 14, parent: 2, name: "Direccion de Seguridad Publica", level: 3 },
+		  { key: 2, parent: 1.4, name: "Secretaría Municipal", level: 3, img: "img/secretariamunicipal", descripcion: "" },
+		  { key: 2.1, parent: 2, name: "Depto. Decretos", level: 4, img: "img/deptodecretos", descripcion: "" },
+		  { key: 2.2, parent: 2.1, name: "Secretaría de Concejo", level: 4, img: "img/secretariadeconcejo", descripcion: "" },
+		  { key: 2.3, parent: 2.2, name: "Oficina de Partes", level: 4, img: "img/oficinadepartes", descripcion: "" },
 
-		  // Nivel 4 (Subdependencias de Secretaria Municipal)
-		  { key: 3.1, parent: 3, name: "Dpto. de Decretos y Resoluciones", level: 4 },
-		  { key: 3.2, parent: 3.1, name: "Seccion Secretaria de Concejo", level: 5 },
-		  { key: 3.3, parent: 3.2, name: "Oficina de Partes, Reclamos y Archivo", level: 6 },
-		  { key: 3.4, parent: 3.3, name: "Seccion de Registro Publico de Organizaciones Sociales", level: 7 },
+		  { key: 3, parent: 1.4, name: "Dirección de Control", level: 3, img: "img/direcciondecontrol", descripcion: "" },
+		  { key: 3.1, parent: 3, name: "Depto. Auditoría", level: 4, img: "img/deptoauditoria", descripcion: "" },
 
-		  // Nivel 4 (Subdependencias de Secretaria Comunal de Planificación)
-		  { key: 4.1, parent: 4, name: "Dpto. de Asesoria Urbana y Estudios", level: 4 },
-		  { key: 4.2, parent: 4.1, name: "Dpto. de Planificacion Presupuestaria y Licitaciones", level: 5 },
-		  { key: 4.3, parent: 4.2, name: "Dpto. de Proyectos", level: 6 },
+		  { key: 4, parent: 1.4, name: "Dirección Asesoría Jurídica", level: 3, img: "img/direccionasesoriajuridica", descripcion: "" },
+		  { key: 4.1, parent: 4, name: "Transparencia", level: 4, img: "img/transparencia", descripcion: "" },
 
-		  // Nivel 4 (Subdependencias de Dirección de Asesoría Jurídica)
-		  { key: 5.1, parent: 5, name: "Transparencia", level: 4 },
+		  { key: 5, parent: 1.4, name: "Dirección de Adm. y Finanzas", level: 3, img: "img/direcciondeadmfinanzas", descripcion: "" },
+		  { key: 5.1, parent: 5, name: "Sección de Rentas", level: 4, img: "img/seccionderentas", descripcion: "" },
+		  { key: 5.2, parent: 5.1, name: "Depto. Bienestar", level: 4, img: "img/deptobienestar", descripcion: "" },
+		  { key: 5.3, parent: 5.2, name: "Presupuestos y Contabilidad", level: 4, img: "img/presupuestosycontabilidad", descripcion: "" },
+		  { key: 5.4, parent: 5.3, name: "Estudios Financieros y Estadísticas", level: 4, img: "img/estudiosfinancierosyestadisticas", descripcion: "" },
+		  { key: 5.5, parent: 5.4, name: "Aprovisionamiento", level: 4, img: "img/aprovisionamiento", descripcion: "" },
+		  { key: 5.6, parent: 5.5, name: "Depto. Personal", level: 4, img: "img/deptopersonal", descripcion: "" },
 
-		  // Nivel 4 (Subdependencias de Dirección de Control)
-		  { key: 6.1, parent: 6, name: "Dpto. de Auditoria", level: 4 },
+		  { key: 6, parent: 1.4, name: "Sec. Comunal de Planificación", level: 3, img: "img/seccomunaldeplanificacion", descripcion: "" },
+		  { key: 6.1, parent: 6, name: "Asesoría Urbana", level: 4, img: "img/asesoriaurbana", descripcion: "" },
+		  { key: 6.2, parent: 6.1, name: "Proyectos y Planificación", level: 4, img: "img/proyectosyplanificacion", descripcion: "" },
 
-		  // Nivel 4 (Subdependencias de Dirección de Administración y Finanzas)
-		  { key: 7.1, parent: 7, name: "Dpto. de Presupuesto y Contabilidad", level: 4 },
-		  { key: 7.11, parent: 7.1, name: "Seccion Tesoreria", level: 5 },
-		  { key: 7.12, parent: 7.11, name: "Seccion Cobranza", level: 6 },
-		  { key: 7.13, parent: 7.12, name: "Seccion Inventarios", level: 7 },
-		  { key: 7.2, parent: 7, name: "Dpto. de Aprovisionamiento", level: 4 },
-		  { key: 7.3, parent: 7, name: "Dpto. de Personal", level: 4 },
-		  { key: 7.31, parent: 7.3, name: "Seccion Recursos Humanos", level: 5 },
-		  { key: 7.32, parent: 7.31, name: "Seccion Remuneraciones", level: 6 },
-		  { key: 7.4, parent: 7, name: "Dpto. de Bienestar", level: 4 },
-		  { key: 7.5, parent: 7, name: "Subdireccion de Rentas Municipales", level: 4 },
-		  { key: 7.51, parent: 7.5, name: "Dpto. de Patentes Municipales", level: 5 },
-		  { key: 7.52, parent: 7.51, name: "Dpto. de Fiscalizacion", level: 6 },
-		  { key: 7.53, parent: 7.52, name: "Seccion de Cobranzas Administrativas", level: 7 },
-		  { key: 7.54, parent: 7.53, name: "Convenio SII", level: 8 },
+		  { key: 7, parent: 1.4, name: "Dirección de Obras", level: 3, img: "img/direcciondeobras", descripcion: "" },
+		  { key: 7.1, parent: 7, name: "Edificación y Archivo", level: 4, img: "img/edificacionyarchivo", descripcion: "" },
+		  { key: 7.2, parent: 7.1, name: "Depto. Construcción y Fiscalización Técnica", level: 4, img: "img/deptoconstruccionyfiscalizaciontecnica", descripcion: "" },
+		  { key: 7.3, parent: 7.2, name: "Alumbrado Público", level: 4, img: "img/alumbradopublico", descripcion: "" },
+		  { key: 7.4, parent: 7.3, name: "Urbanismo", level: 4, img: "img/urbanismo", descripcion: "" },
 
-		  // Nivel 4 (Subdependencias de Dirección de Obras)
-		  { key: 8.1, parent: 8, name: "Dpto. de Edificacion y Archivo", level: 4 },
-		  { key: 8.2, parent: 8.1, name: "Dpto. de Construccion e Inspeccion Tecnica", level: 5 },
-		  { key: 8.3, parent: 8.2, name: "Dpto. de Urbanismo", level: 6 },
-		  { key: 8.4, parent: 8.3, name: "Dpto. de Ingenieria Electrica, Alumbrado Publico y Proyectos", level: 7 },
+		  { key: 8, parent: 1.4, name: "Dirección de Desarrollo Comunitario", level: 3, img: "img/direcciondesarrollocomunitario", descripcion: "" },
+		  { key: 8.1, parent: 8, name: "Depto. Social", level: 4, img: "img/deptosocial", descripcion: "" },
+		  { key: 8.2, parent: 8.1, name: "Depto. Gestión Comunitaria", level: 4, img: "img/deptogestioncomunitaria", descripcion: "" },
+		  { key: 8.3, parent: 8.2, name: "Depto. Desarrollo Económico Local", level: 4, img: "img/deptodesarrolloeconomicolocal", descripcion: "" },
+		  { key: 8.4, parent: 8.3, name: "Cultura", level: 4, img: "img/cultura", descripcion: "" },
+		  { key: 8.5, parent: 8.4, name: "Depto. de la Mujer", level: 4, img: "img/deptodelamujer", descripcion: "" },
+		  { key: 8.6, parent: 8.5, name: "Depto. Riesgos de Desastres", level: 4, img: "img/deptoriesgosdesastres", descripcion: "" },
 
-		  // Nivel 4 (Subdependencias de Dirección de Tránsito y Transporte Público)
-		  { key: 9.1, parent: 9, name: "Dpto. de Licencias de Conducir", level: 4 },
-		  { key: 9.2, parent: 9.1, name: "Dpto. de Ingenieria y Estudios", level: 5 },
-		  { key: 9.3, parent: 9.2, name: "Dpto. de Permisos de Circulacion", level: 6 },
+		  { key: 9, parent: 1.4, name: "Dirección de Servicios Traspasados", level: 3, img: "img/direccionserviciostraspasados", descripcion: "" },
+		  { key: 9.1, parent: 9, name: "Depto. de Educación Municipal", level: 4, img: "img/deptoeducacionmunicipal", descripcion: "" },
+		  { key: 9.2, parent: 9.1, name: "COSAM", level: 4, img: "img/cosam", descripcion: "" },
 
-		  // Nivel 4 (Subdependencias de Dirección de Desarrollo Comunitario)
-		  { key: 10.1, parent: 10, name: "Subdireccion de Gestion y Familia", level: 4 },
-		  { key: 10.11, parent: 10.1, name: "Dpto. de Programas Externos", level: 5 },
-		  { key: 10.12, parent: 10.11, name: "Dpto. de Juventud y Niñez", level: 6 },
-		  { key: 10.13, parent: 10.12, name: "Dpto. de la Mujer", level: 7 },
-		  { key: 10.2, parent: 10, name: "Subdireccion Social", level: 4 },
-		  { key: 10.21, parent: 10.2, name: "Dpto. Tecnico Social", level: 5 },
-		  { key: 10.211, parent: 10.21, name: "Seccion Tecnico Social", level: 6 },
-		  { key: 10.212, parent: 10.211, name: "Seccion de Estratificacion Social", level: 7 },
-		  { key: 10.213, parent: 10.212, name: "Seccion de Migracion", level: 8 },
-		  { key: 10.214, parent: 10.213, name: "Oficina de Inclusion de Personas con Discapacidad", level: 9 },
-		  { key: 10.215, parent: 10.214, name: "Oficina de Prestaciones Monetarias", level: 10 },
-		  { key: 10.216, parent: 10.215, name: "Oficina de Orientacion y Derivacion Legal", level: 11 },
-		  { key: 10.3, parent: 10, name: "Subdireccion de Gestion Comunitaria", level: 4 },
-		  { key: 10.31, parent: 10.3, name: "Unidad de Apoyo de Organizaciones", level: 5 },
-		  { key: 10.4, parent: 10, name: "Subdireccion de Personas Mayores", level: 4 },
-		  { key: 10.42, parent: 10.4, name: "Oficina de Personas Mayores", level: 5 },
-		  { key: 10.5, parent: 10, name: "Subdireccion de Cultura", level: 4 },
-		  { key: 10.51, parent: 10.5, name: "Seccion Gestion Cultural", level: 5 },
-		  { key: 10.511, parent: 10.51, name: "Patrimonio", level: 6 },
-		  { key: 10.512, parent: 10.511, name: "Formacion", level: 7 },
-		  { key: 10.513, parent: 10.512, name: "Programacion", level: 8 },
-		  { key: 10.514, parent: 10.512, name: "Pueblos Originarios", level: 8 },
-		  { key: 10.52, parent: 10.5, name: "Participacion y Proyectos", level: 5 },
-		  { key: 10.53, parent: 10.5, name: "Biblioteca", level: 5 },
-		  { key: 10.6, parent: 10, name: "Subdireccion de Desarrollo Local", level: 4 },
-		  { key: 10.61, parent: 10.6, name: "Seccion de OMIL", level: 5 },
-		  { key: 10.62, parent: 10.61, name: "Seccion de Turismo", level: 6 },
-		  { key: 10.63, parent: 10.62, name: "Seccion de OTEC", level: 7 },
-		  { key: 10.64, parent: 10.63, name: "Seccion de Fomento Productivo", level: 8 },
-		  { key: 10.7, parent: 10, name: "Subdireccion de Gestion del Riesgo de Desastre", level: 4 },
-		  { key: 10.71, parent: 10.7, name: "Dpto. de Emergencia Social", level: 5 },
+		  { key: 10, parent: 1.4, name: "Dirección de Operación y Servicios a la Comunidad", level: 3, img: "img/direccionoperacionyserviciosalacomunidad", descripcion: "" },
+		  { key: 10.1, parent: 10, name: "Depto. de Servicios Generales", level: 4, img: "img/deptoserviciosgenerales", descripcion: "" },
+		  { key: 10.2, parent: 10.1, name: "Servicio de Guardia Interna", level: 4, img: "img/serviciodeguardiainterna", descripcion: "" },
+		  { key: 10.3, parent: 10.2, name: "Depto. de Emergencia", level: 4, img: "img/deptodeemergencia", descripcion: "" },
+		  { key: 10.4, parent: 10.3, name: "OIRS", level: 4, img: "img/oirs", descripcion: "" },
 
-		  // Nivel 4 (Subdependencias de Dirección de Medio Ambiente, Aseo y Áreas Verdes)
-		  { key: 11.1, parent: 11, name: "Dpto. de Areas Verdes", level: 4 },
-		  { key: 11.2, parent: 11, name: "Dpto. de Medio Ambiente", level: 4 },
-		  { key: 11.3, parent: 11, name: "Dpto. Servicios Municipales", level: 4 },
-		  { key: 11.31, parent: 11.3, name: "Seccion de Aseo Comunal", level: 5 },
-		  { key: 11.32, parent: 11.31, name: "Seccion Mantencion de Dependencias Municipales", level: 6 },
-		  { key: 11.33, parent: 11.32, name: "Seccion Mantencion de Vehiculos", level: 7 },
+		  { key: 11, parent: 1.4, name: "Dirección de Medio Ambiente y Áreas Verdes", level: 3, img: "img/direcciondemedioambienteyareasverdes", descripcion: "" },
+		  { key: 11.1, parent: 11, name: "Depto. de Servicios Municipales", level: 4, img: "img/deptoserviciosmunicipales", descripcion: "" },
+		  { key: 11.2, parent: 11.1, name: "Depto. Medio Ambiente", level: 4, img: "img/deptomedioambiente", descripcion: "" },
+		  { key: 11.3, parent: 11.2, name: "Depto. Áreas Verdes", level: 4, img: "img/deptoareasverdes", descripcion: "" },
 
-		  // Nivel 4 (Subdependencias de Dirección de Operaciones y Servicio a la Comunidad)
-		  { key: 12.1, parent: 12, name: "Dpto. de Servicios Generales", level: 4 },
-		  { key: 12.2, parent: 12.1, name: "Servicio de Guardia Interna", level: 5 },
+		  { key: 12, parent: 1.4, name: "Dirección de Tránsito y Transporte Público", level: 3, img: "img/direcciondetransitoytransportepublico", descripcion: "" },
+		  { key: 12.1, parent: 12, name: "Depto. Permisos de Circulación", level: 4, img: "img/deptopermisosdecirculacion", descripcion: "" },
+		  { key: 12.2, parent: 12.1, name: "Depto. Ingeniería y Estudios", level: 4, img: "img/deptoingenieriayestudios", descripcion: "" },
+		  { key: 12.3, parent: 12.2, name: "Depto. Licencias de Conducir", level: 4, img: "img/deptolicenciasdeconducir", descripcion: "" },
 
-		  // Nivel 4 (Subdependencias de Dirección de Servicios Traspasados)
-		  { key: 13.1, parent: 13, name: "Dpto. de Educacion Municipal", level: 4 },
-
-		  // Nivel 4 (Subdependencias de Dirección de Seguridad Pública)
-		  { key: 14.1, parent: 14, name: "Dpto. de Servicios Generales", level: 4 },
-		  { key: 14.2, parent: 14.1, name: "Servicio de Guardia Interna", level: 5 }
+		  { key: 13, parent: 1.4, name: "Dirección de Seguridad Pública", level: 3, img: "img/direcciondeseguridadpublica", descripcion: "" }
 
 		]);
 	  }
