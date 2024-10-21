@@ -84,7 +84,8 @@
 	<div id="overlay"></div>
 	
 	
-	 <script type="module"  src = "script1.js"  ></script>
-
+	 <script src = "script1.js"  ></script>
+	 <script src = "arreglodeptos.js" ></script>
+	 
 </body>
 </html>
