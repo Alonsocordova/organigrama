@@ -13,6 +13,7 @@ function init() {
   // Definir cómo serán los nodos del organigrama
   myDiagram.nodeTemplate = $(
     go.Node, "Auto",
+	
     { click: showNodePopup }, // Evento para mostrar el popup al hacer clic en un nodo
 	 
 	 new go.Binding("desiredSize", "key", function(key) {
@@ -29,7 +30,6 @@ function init() {
 	  { stroke: "black"}
      ),
 	
-
     $(go.TextBlock, {
         margin: 12,
         wrap: go.TextBlock.WrapDesiredSize, // Ajuste de texto (Text Wrapping)
@@ -53,7 +53,6 @@ function init() {
     go.Link,
     { routing: go.Link.Orthogonal, corner: 5 },
     $(go.Shape),
-    //$(go.Shape, { toArrow: "OpenTriangle" })
   );
 
 	// Crear el modelo de datos
@@ -65,16 +64,17 @@ function showNodePopup(e, node) {
   const overlay = document.getElementById("overlay");
   const popupContent = document.getElementById("popupContent");
 
-  const depto = departamentos.find(depto => depto.key === node.data.key);
+  const desc = descripciones.find(desc => desc.key === node.data.key);
+  
   // Actualizar el contenido del modal con la información del nodo
-  if (depto) {
+  if (desc) {
     popupContent.innerHTML = `
 	
 	<h3 style="color: #4CAF50;">${node.data.name}</h3>
 	
-	<img src="${depto.img}" >
+	<img src="${node.data.img}" >
 	
-	<p >${depto.descripcion}</p>
+	<p >${desc.descripcion}</p>
 	
 	`
   } else {
