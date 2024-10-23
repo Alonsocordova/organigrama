@@ -1,6 +1,7 @@
 import departamentos from './arreglodptos.js';
 import descripciones from './arreglodescr.js';
-const $ = go.GraphObject.make; // abreviación para simplificar el código
+function init() {
+  const $ = go.GraphObject.make; // abreviación para simplificar el código
 
   // Crear el diagrama con un TreeLayout para la organización automática
   const myDiagram = $(go.Diagram, "myDiagramDiv", {
@@ -112,5 +113,4 @@ function getNodeColor(level) {
     case 4: return "#E5E7EB"; // Gris suave para el nivel más bajo
   }
 }
-
 
