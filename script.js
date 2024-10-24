@@ -69,14 +69,23 @@ function showNodePopup(e, node) {
   // Actualizar el contenido del modal con la información del nodo
   if (desc) {
     popupContent.innerHTML = `
+	  
+		<div style="display:flex;" >
+			
+				<img id ="imgn" src="${node.data.img}">
+			<div>  
+				<h3 style="display:flex;">${node.data.name}</h3>
+				<h3 > Nombre encargado</h3>
+				<p><strong>Correo:</strong> correo@quintanormal.cl</p>
+				<p><strong>Teléfono:</strong> 22 9507127</p>
+				<p><strong>Secretaria:</strong> Maria Jose Abustribiy</p>
+			</div>
+		</div>
+		<p>${desc.descripcion || 'Descripción no disponible.'}</p>
 	
-	<h3 style="color: #4CAF50;">${node.data.name}</h3>
+	`;
 	
-	<img src="${node.data.img}" >
 	
-	<p >${desc.descripcion}</p>
-	
-	`
   } else {
     popupContent.innerHTML = `<h3>${node.data.name}</h3><p>Descripción no encontrada</p>`;
   }

@@ -1,5 +1,5 @@
 const departamentos = [
-  { key: 1, name: "Alcaldía", level: 1, img: "img/alcaldia" },
+  { key: 1, name: "Alcaldía", level: 1, img: "img/images.png" },
   { key: 1.1, parent: 1, name: "COSOC", level: 2, img: "img/cosoc" },
   { key: 1.2, parent: 1, name: "Juzgado de Policía Local", level: 2, img: "img/juzgadodepolicialocal" },
   { key: 1.3, parent: 1, name: "Informática", level: 2, img: "img/informatica" },
@@ -57,4 +57,4 @@ const departamentos = [
   { key: 13, parent: 1.4, name: "Dirección de Seguridad Pública", level: 3, img: "img/direcciondeseguridadpublica" }
 ];
 
- export default departamentos;
+// export default departamentos;
