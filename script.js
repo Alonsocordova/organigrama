@@ -74,11 +74,11 @@ function showNodePopup(e, node) {
 			
 				<img id ="imgn" src="${node.data.img}">
 			<div>  
-				<h3 style="display:flex;">${node.data.name}</h3>
-				<h3 > Nombre encargado</h3>
-				<p><strong>Correo:</strong> correo@quintanormal.cl</p>
-				<p><strong>Teléfono:</strong> 22 9507127</p>
-				<p><strong>Secretaria:</strong> Maria Jose Abustribiy</p>
+				<h3>${node.data.name}</h3>
+				<h3>${node.data.encargado}</h3>
+				<p><strong>Correo:</strong>${node.data.correo}</p>
+				<p><strong>Teléfono:</strong>${node.data.telefono}</p>
+				<p><strong>Secretaria:</strong>${node.data.secretaria}</p>
 			</div>
 		</div>
 		<p>${desc.descripcion || 'Descripción no disponible.'}</p>
