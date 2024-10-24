@@ -57,4 +57,4 @@ const departamentos = [
   { key: 13, parent: 1.4, name: "Dirección de Seguridad Pública", level: 3, img: "img/direcciondeseguridadpublica" }
 ];
 
-// export default departamentos;
+ export default departamentos;
